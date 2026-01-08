@@ -1,0 +1,352 @@
+{
+	"info": {
+		"_postman_id": "b8f1a6e8-a0aa-40db-bd8b-357e210d65dc",
+		"name": "API Voll.med",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49502225",
+		"_collection_link": "https://christiangaray959-4861858.postman.co/workspace/Christian-Garay's-Workspace~8ea4f06c-8967-4b3f-8b54-a24cff207e53/collection/49502225-b8f1a6e8-a0aa-40db-bd8b-357e210d65dc?action=share&source=collection_link&creator=49502225"
+	},
+	"item": [
+		{
+			"name": "Medicos",
+			"item": [
+				{
+					"name": "Registro de medico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Kuky Garay\",\r\n    \"email\": \"kuky@gmail.com\",\r\n    \"telefono\": \"34567892345\",\r\n    \"documento\": \"33056078\",\r\n    \"especialidad\": \"DERMATOLOGIA\",\r\n    \"direccion\": {\r\n        \"calle\": \"calle W\",\r\n        \"numero\": \"6\",\r\n        \"complemento\": \"complemento\",\r\n        \"barrio\": \"barrio\",\r\n        \"codigo_postal\": \"5842\",\r\n        \"ciudad\": \"El Fortin\",\r\n        \"estado\": \"San Luis\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/medicos",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"medicos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar medicos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Kuky Garay\",\r\n    \"email\": \"kuky@gmail.com\",\r\n    \"telefono\": \"34567892345\",\r\n    \"documento\": \"33056078\",\r\n    \"especialidad\": \"DERMATOLOGIA\",\r\n    \"direccion\": {\r\n        \"calle\": \"calle W\",\r\n        \"numero\": \"6\",\r\n        \"complemento\": \"complemento\",\r\n        \"barrio\": \"barrio\",\r\n        \"codigo_postal\": \"5842\",\r\n        \"ciudad\": \"El Fortin\",\r\n        \"estado\": \"San Luis\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/medicos",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"medicos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detallar medico",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Kuky Garay\",\r\n    \"email\": \"kuky@gmail.com\",\r\n    \"telefono\": \"34567892345\",\r\n    \"documento\": \"33056078\",\r\n    \"especialidad\": \"DERMATOLOGIA\",\r\n    \"direccion\": {\r\n        \"calle\": \"calle W\",\r\n        \"numero\": \"6\",\r\n        \"complemento\": \"complemento\",\r\n        \"barrio\": \"barrio\",\r\n        \"codigo_postal\": \"5842\",\r\n        \"ciudad\": \"El Fortin\",\r\n        \"estado\": \"San Luis\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/medicos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"medicos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar medico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"nombre\": \"Tobias Garay\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/medicos/23",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"medicos",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar medico",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"activo\": true,\r\n    \"nombre\": \"Carbonero Garay\",\r\n    \"telefono\": \"3544878111\"       \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/medicos",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"medicos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paciente",
+			"item": [
+				{
+					"name": "Registro de paciente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Linda Evanz\",\r\n    \"email\": \"linda@example.com\",\r\n    \"telefono\": \"45612345678\",\r\n    \"documento\": \"12905678\",\r\n    \"direccion\": {\r\n        \"calle\": \"Calle Llegate\",\r\n        \"numero\": \"15\",\r\n        \"complemento\": \"Apto 1\",\r\n        \"barrio\": \"Centro\",\r\n        \"ciudad\": \"Corrientes\",\r\n        \"estado\": \"Corrientes\",\r\n        \"codigo_postal\": \"3345\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/pacientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"pacientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar pacientes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Kuky Garay\",\r\n    \"email\": \"kuky@gmail.com\",\r\n    \"telefono\": \"34567892345\",\r\n    \"documento\": \"33056078\",\r\n    \"especialidad\": \"DERMATOLOGIA\",\r\n    \"direccion\": {\r\n        \"calle\": \"calle W\",\r\n        \"numero\": \"6\",\r\n        \"complemento\": \"complemento\",\r\n        \"barrio\": \"barrio\",\r\n        \"codigo_postal\": \"5842\",\r\n        \"ciudad\": \"El Fortin\",\r\n        \"estado\": \"San Luis\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/pacientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"pacientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detallar pacientes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Kuky Garay\",\r\n    \"email\": \"kuky@gmail.com\",\r\n    \"telefono\": \"34567892345\",\r\n    \"documento\": \"33056078\",\r\n    \"especialidad\": \"DERMATOLOGIA\",\r\n    \"direccion\": {\r\n        \"calle\": \"calle W\",\r\n        \"numero\": \"6\",\r\n        \"complemento\": \"complemento\",\r\n        \"barrio\": \"barrio\",\r\n        \"codigo_postal\": \"5842\",\r\n        \"ciudad\": \"El Fortin\",\r\n        \"estado\": \"San Luis\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/pacientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"pacientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar paciente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"activo\": true,\r\n    \"nombre\": \"Carlos Enrique\",\r\n    \"telefono\": \"3543338111\"       \r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/pacientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"pacientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"nombre\": \"Tobias Garay\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/medicos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"medicos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Iniciar Sesion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"token\", jsonData.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"kukygaray@gmail.com\",\r\n    \"contrasena\": \"123456\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
