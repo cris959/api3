@@ -29,4 +29,12 @@ public interface IMedicoRepository extends JpaRepository<Medico, Long> {
             ORDER BY RAND()
             """)
     Medico elegirMedicoAleratorioEnLaFecha(@Param("especialidad") Especialidad especialidad, @Param("fecha") LocalDateTime fecha);
+
+    @Query("""
+            SELECT m.activo
+            FROM Medico m
+            WHERE
+            m.id = :idMedico
+            """)
+    boolean findActivoById(Long idMedico);
 }
