@@ -19,7 +19,7 @@ public class ReservaDeConsulta {
     private IPacienteRepository pacienteRepository;
 
     @Autowired
-    private IConsultaRepository repository;
+    private IConsultaRepository consultaRepository;
 
     public void reservar(DatosReservaConsulta datos) {
 
@@ -33,8 +33,8 @@ public class ReservaDeConsulta {
         var medico = elegirMedico(datos);
         var paciente = pacienteRepository.findById(datos.idPaciente()).get();
 
-        var consulta = new Consulta(null, medico, paciente, datos.fecha());
-        repository.save(consulta);
+        var consulta = new Consulta(null, medico, paciente, datos.fecha(), null);
+        consultaRepository.save(consulta);
     }
 
     private Medico elegirMedico(DatosReservaConsulta datos) {
@@ -45,5 +45,13 @@ public class ReservaDeConsulta {
             throw new ValidacionException("Es necesario elegir la especialidad cuando no se elije un medico.");
         }
         return medicoRepository.elegirMedicoAleratorioEnLaFecha(datos.especialidad(), datos.fecha());
+    }
+
+    public void cancelar(DatosCancelamientoConsulta datos) {
+        if (!consultaRepository.existsById(datos.idConsulta())) {
+            throw new ValidacionException("Id de la consulta informado no existe!");
+        }
+        var consulta = consultaRepository.getReferenceById(datos.idConsulta());
+        consulta.cancelar(datos.motivo());
     }
 }
