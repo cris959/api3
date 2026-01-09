@@ -8,7 +8,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Component
-public class ValidacionConsultaConAnticipacion {
+public class ValidadorConsultaConAnticipacion implements IValidadorDeConsultas {
 
     public void validar(DatosReservaConsulta datos) {
         var fechaConsulta = datos.fecha();

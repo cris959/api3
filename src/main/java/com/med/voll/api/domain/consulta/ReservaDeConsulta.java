@@ -2,26 +2,33 @@ package com.med.voll.api.domain.consulta;
 
 
 import com.med.voll.api.domain.ValidacionException;
+import com.med.voll.api.domain.consulta.validaciones.IValidadorDeConsultas;
 import com.med.voll.api.domain.medico.IMedicoRepository;
 import com.med.voll.api.domain.medico.Medico;
 import com.med.voll.api.domain.paciente.IPacienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReservaDeConsulta {
 
+    private final IMedicoRepository medicoRepository;
 
-    @Autowired
-    private IMedicoRepository medicoRepository;
+    private final IPacienteRepository pacienteRepository;
 
-    @Autowired
-    private IPacienteRepository pacienteRepository;
+    private final IConsultaRepository consultaRepository;
 
-    @Autowired
-    private IConsultaRepository consultaRepository;
+    private final List<IValidadorDeConsultas> validadores;
 
-    public void reservar(DatosReservaConsulta datos) {
+    public ReservaDeConsulta(IMedicoRepository medicoRepository, IPacienteRepository pacienteRepository, IConsultaRepository consultaRepository, List<IValidadorDeConsultas> validadores) {
+        this.medicoRepository = medicoRepository;
+        this.pacienteRepository = pacienteRepository;
+        this.consultaRepository = consultaRepository;
+        this.validadores = validadores;
+    }
+
+    public DatosDetalleConsulta reservar(DatosReservaConsulta datos) {
 
         if (!pacienteRepository.existsById(datos.idPaciente())) {
             throw new ValidacionException("No existe un paciente con el id informado");
@@ -30,11 +37,17 @@ public class ReservaDeConsulta {
             throw new ValidacionException("No existe un medico con el id informado");
         }
 
-        var medico = elegirMedico(datos);
-        var paciente = pacienteRepository.findById(datos.idPaciente()).get();
+        // Validaciones
+        validadores.forEach(v ->v.validar(datos));
 
+        var medico = elegirMedico(datos);
+        if (medico != null) {
+            throw new ValidacionException("No existe un medico disponible en ese horario");
+        }
+        var paciente = pacienteRepository.findById(datos.idPaciente()).get();
         var consulta = new Consulta(null, medico, paciente, datos.fecha(), null);
         consultaRepository.save(consulta);
+        return new DatosDetalleConsulta(consulta);
     }
 
     private Medico elegirMedico(DatosReservaConsulta datos) {

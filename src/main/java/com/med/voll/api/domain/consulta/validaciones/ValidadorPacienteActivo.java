@@ -6,7 +6,7 @@ import com.med.voll.api.domain.paciente.IPacienteRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidadorPacienteActivo {
+public class ValidadorPacienteActivo implements IValidadorDeConsultas {
 
     private final IPacienteRepository pacienteRepository;
 

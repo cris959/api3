@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.time.DayOfWeek;
 
 @Component
-public class ValidacionFueraHorarioConsultas {
+public class ValidadorFueraHorarioConsultas implements IValidadorDeConsultas {
 
     public void validar(DatosReservaConsulta datos) {
         var fechaConsulta = datos.fecha();

@@ -3,7 +3,6 @@ package com.med.voll.api.controller;
 import com.med.voll.api.domain.paciente.*;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -16,8 +15,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/pacientes")
 public class PacienteController {
 
-    @Autowired
-    private IPacienteRepository repository;
+
+    private final IPacienteRepository repository;
+
+    public PacienteController(IPacienteRepository repository) {
+        this.repository = repository;
+    }
 
     @Transactional
     @PostMapping
@@ -33,12 +36,8 @@ public class PacienteController {
     @GetMapping
     public ResponseEntity<Page<DatosListaPaciente>> listar(@PageableDefault(size = 10, sort = {"nombre"}) Pageable paginacion) {
 
-//        try {
             var page = repository.findAllByActivoTrue(paginacion).map(DatosListaPaciente::new);
             return ResponseEntity.ok(page);
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().build();
-//        }
     }
 
     @Transactional
@@ -52,9 +51,7 @@ public class PacienteController {
     @Transactional
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-//        if (!repository.existsById(id)) {
-//            return ResponseEntity.notFound().build();
-//        }
+
         var paciente = repository.getReferenceById(id);
         paciente.eliminar();
         return ResponseEntity.noContent().build();
@@ -62,9 +59,7 @@ public class PacienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<DatosDetallePaciente> detallar(@PathVariable Long id) {
-//        if (!repository.existsById(id)) {
-//            return ResponseEntity.notFound().build();
-//        }
+
         var paciente = repository.getReferenceById(id);
 
         return ResponseEntity.ok(new DatosDetallePaciente(paciente));

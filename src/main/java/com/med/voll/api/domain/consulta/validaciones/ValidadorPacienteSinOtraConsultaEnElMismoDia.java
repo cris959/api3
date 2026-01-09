@@ -6,7 +6,7 @@ import com.med.voll.api.domain.consulta.IConsultaRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidadorPacienteSinOtraConsultaEnElMismoDia {
+public class ValidadorPacienteSinOtraConsultaEnElMismoDia implements IValidadorDeConsultas {
 
     private final IConsultaRepository consultaRepository;
 

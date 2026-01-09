@@ -3,7 +3,6 @@ package com.med.voll.api.controller;
 import com.med.voll.api.domain.medico.*;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -17,8 +16,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/medicos")
 public class MedicoController {
 
-    @Autowired
-    private IMedicoRepository repository;
+
+    private final IMedicoRepository repository;
+
+    public MedicoController(IMedicoRepository repository) {
+        this.repository = repository;
+    }
 
     @Transactional
     @PostMapping
@@ -49,9 +52,7 @@ public class MedicoController {
     @Transactional
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-//        if (!repository.existsById(id)) {
-//            return ResponseEntity.notFound().build(); // 404 si no existe!!!
-//        }
+
         var medico = repository.getReferenceById(id);
         medico.eliminar();
         return ResponseEntity.noContent().build();
@@ -60,9 +61,7 @@ public class MedicoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<DatosDetalleMedico> detallar(@PathVariable Long id) {
-//        if (!repository.existsById(id)) {
-//            return ResponseEntity.notFound().build(); // 404 si no existe!!!
-//        }
+
         var medico = repository.getReferenceById(id);
 
         return ResponseEntity.ok(new DatosDetalleMedico(medico));
