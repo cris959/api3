@@ -41,7 +41,7 @@ public class ReservaDeConsulta {
         validadores.forEach(v ->v.validar(datos));
 
         var medico = elegirMedico(datos);
-        if (medico != null) {
+        if (medico == null) {
             throw new ValidacionException("No existe un medico disponible en ese horario");
         }
         var paciente = pacienteRepository.findById(datos.idPaciente()).get();

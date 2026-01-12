@@ -1,7 +1,6 @@
 package com.med.voll.api.controller;
 
 import com.med.voll.api.domain.consulta.DatosCancelamientoConsulta;
-import com.med.voll.api.domain.consulta.DatosDetalleConsulta;
 import com.med.voll.api.domain.consulta.DatosReservaConsulta;
 import com.med.voll.api.domain.consulta.ReservaDeConsulta;
 import jakarta.validation.Valid;

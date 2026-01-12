@@ -1,5 +1,6 @@
 package com.med.voll.api.infra.exceptions;
 
+import com.med.voll.api.domain.ValidacionException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +24,11 @@ public class GestorDeErrores {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> gestionarError400(MethodArgumentNotValidException e) {
-        var errores = e.getFieldErrors();
-        return ResponseEntity.badRequest().body(errores.stream().map(DatosErrorValidacion::new).toList());
+    public ResponseEntity tratarError400(MethodArgumentNotValidException e){
+        var errores = e.getFieldErrors().stream().map(DatosErrorValidacion::new).toList();
+        return ResponseEntity.badRequest().body(errores);
     }
+
 
 
 
@@ -35,9 +37,9 @@ public class GestorDeErrores {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
-    @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity gestionarErrorBadCredentials() {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+    @ExceptionHandler(ValidacionException.class)
+    public ResponseEntity tratarErrorDeValidacion(ValidacionException e){
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     @ExceptionHandler(AuthenticationException.class)
