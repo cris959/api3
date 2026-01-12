@@ -3,6 +3,7 @@ package com.med.voll.api.controller;
 import com.med.voll.api.domain.consulta.DatosCancelamientoConsulta;
 import com.med.voll.api.domain.consulta.DatosReservaConsulta;
 import com.med.voll.api.domain.consulta.ReservaDeConsulta;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
 
 
