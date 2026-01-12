@@ -3,6 +3,7 @@ package com.med.voll.api.infra.springdoc;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -14,10 +15,17 @@ import org.springframework.context.annotation.Configuration;
 @OpenAPIDefinition(
         info = @Info(
                 title = "Clinica-API-med-voll",
-                description = "API Rest de la aplicación Voll.med...",
+                description = "API Rest de la aplicación Voll.med.",
                 version = "1.0.0",
-                contact = @Contact(name = "Christian Ariel Garay", email = "christiangaray959@gmail.com")
+                contact = @Contact(
+                        name = "Christian Ariel Garay",
+                        email = "christiangaray959@gmail.com"),
+                license = @License(
+                name = "Apache 2.0",
+                url = "https://www.apache.org/licenses/LICENSE-2.0"
+                )
         ),
+
         servers = {
                 @Server(description = "DEV SERVER", url = "http://localhost:8000"),
                 @Server(description = "PROD SERVER", url = "http://cris959:8080")
