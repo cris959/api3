@@ -28,7 +28,7 @@ public interface IMedicoRepository extends JpaRepository<Medico, Long> {
             )
             ORDER BY RAND()
             """)
-    Medico elegirMedicoAleratorioEnLaFecha(@Param("especialidad") Especialidad especialidad, @Param("fecha") LocalDateTime fecha);
+   Medico elegirMedicoAleratorioEnLaFecha(@Param("especialidad") Especialidad especialidad, @Param("fecha") LocalDateTime fecha);
 
     @Query("""
             SELECT m.activo
