@@ -13,4 +13,7 @@ public record DatosCancelamientoConsulta(
                 implementation = MotivoCancelamiento.class)
         MotivoCancelamiento motivo
 ) {
+        public boolean isEmpty() {
+                return idConsulta == null || motivo == null;
+        }
 }

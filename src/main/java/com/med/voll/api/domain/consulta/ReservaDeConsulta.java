@@ -8,6 +8,7 @@ import com.med.voll.api.domain.medico.Medico;
 import com.med.voll.api.domain.paciente.IPacienteRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -61,10 +62,20 @@ public class ReservaDeConsulta {
     }
 
     public void cancelar(DatosCancelamientoConsulta datos) {
-        if (!consultaRepository.existsById(datos.idConsulta())) {
-            throw new ValidacionException("Id de la consulta informado no existe!");
+//        if (!consultaRepository.existsById(datos.idConsulta())) {
+//            throw new ValidacionException("Id de la consulta informado no existe!");
+//        }
+//        var consulta = consultaRepository.getReferenceById(datos.idConsulta());
+//        consulta.cancelar(datos.motivo());
+//    }
+        if (datos == null || datos.isEmpty()) {
+            throw new ValidacionException("Es obligatorio informar el motivo de la cancelacion!");
         }
-        var consulta = consultaRepository.getReferenceById(datos.idConsulta());
-        consulta.cancelar(datos.motivo());
+        var consulta = consultaRepository.findById(datos.idConsulta())
+                .orElseThrow(() -> new ValidacionException("No existe una consulta con el id informado."));
+        if (consulta.getFecha().isBefore(LocalDateTime.now().plusHours(24))) {
+            throw new ValidacionException("La reserva solo se puede cancelar con al menos 24 horas de antelacion.");
+        }
+
     }
 }
