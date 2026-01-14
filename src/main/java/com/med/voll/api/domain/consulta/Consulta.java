@@ -5,6 +5,7 @@ import com.med.voll.api.domain.paciente.Paciente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -41,6 +42,25 @@ public class Consulta {
         this.fecha = fecha;
     }
 
+    public LocalDateTime getFecha() {
+        return this.fecha;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public MotivoCancelamiento getMotivoCancelamiento() {
+        return motivoCancelamiento;
+    }
 
     public void cancelar(MotivoCancelamiento motivo) {
         this.motivoCancelamiento = motivo;

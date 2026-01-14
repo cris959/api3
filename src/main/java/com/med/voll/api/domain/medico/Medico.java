@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

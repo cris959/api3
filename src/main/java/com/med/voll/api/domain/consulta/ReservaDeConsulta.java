@@ -46,7 +46,7 @@ public class ReservaDeConsulta {
             throw new ValidacionException("No existe un medico disponible en ese horario");
         }
         var paciente = pacienteRepository.findById(datos.idPaciente()).get();
-        var consulta = new Consulta(null, medico, paciente, datos.fecha(), null);
+        var consulta = new Consulta( medico, paciente, datos.fecha());
         consultaRepository.save(consulta);
         return new DatosDetalleConsulta(consulta);
     }
